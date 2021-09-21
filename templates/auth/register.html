@@ -34,17 +34,7 @@
                                 </div>
                             </div>
 
-                            {% if messages%}
-
-                            {% for message in messages%}
-
-                            <div class="alert alert-{{message.tag}}">
-                                {{message}}
-                            </div>
-
-                            {%endfor%}
-
-                            {% endif %}
+                            {% include 'partials/_flash_messages.html'%}
 
 
                             <form action="{% url 'register' %}" method="post">
@@ -99,7 +89,7 @@
                           <div class="card mt-4 text-center">
                             <div class="card-body">
                                 <p>
-                                    Already have an account?<a href="">Login</a>
+                                    Already have an account?<a href="{% url 'login' %}">Login</a>
                                 </p>
                                 <p>
                                     Forgot Password? <a href="">Reset it here</a>

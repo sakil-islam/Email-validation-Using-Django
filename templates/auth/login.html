@@ -18,17 +18,7 @@
                     <div class="card mt-5">
                             <img src="https://mta-instagram-clone.herokuapp.com/static/img/instagram-wordmark.svg" class="card-img-top" alt="...">
                             <div class="card-body">
-                                {% if messages%}
-
-                            {% for message in messages%}
-
-                            <div class="alert alert-danger">
-                                {{message}}
-                            </div>
-
-                            {%endfor%}
-
-                            {% endif %}
+                                {% include 'partials/_flash_messages.html'%}
 
                            <form action="{%url 'login'%}" method="POST">
                                {% csrf_token%}
