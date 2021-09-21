@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from django.contrib import messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -110,3 +111,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR, ]
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'test.user.sak@gmail.com'
+EMAIL_HOST_PASSWORD = '14shakil'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
