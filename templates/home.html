@@ -1,34 +1,5 @@
-{% extends 'base.html'%} {% block content %} {% comment %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid d-flex">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarTogglerDemo03"
-      aria-controls="navbarTogglerDemo03"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#">Ami Coding Pari Na</a>
-    <div class="d-flex w-80 justify-content-space-around">
-      <form action="{% url 'home'%}" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="Home" class="btn btn-info" />
-      </form>
-      <div class="d-flex justify-content-flex-end">
-        <form action="{% url 'logout'%}" method="POST">
-          {% csrf_token %}
-          <input type="submit" value="Logout" class="btn btn-info" />
-        </form>
-      </div>
-    </div>
-  </div>
-</nav>
-{% endcomment %}
-
+{% extends 'base.html'%} {% block content %}
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <button
     class="navbar-toggler"
@@ -43,94 +14,112 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <div class="col-md-3 d-flex">
-      <a class="navbar-brand" href="#">Ami Coding Pari Na</a>
+      <a class="navbar-brand" href="{% url 'home'%}">Ami Coding Pari Na</a>
     </div>
-    <div class="col-md-6 d-flex">
+    <div class="col-md-7 d-flex">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" href="#"
+          <a class="nav-link" href="{% url 'home'%}"
             >Home <span class="sr-only">(current)</span></a
           >
         </li>
       </ul>
-      <form class="form-inline my-3 my-lg-0">
-        <button class="btn btn-danger my-2 my-sm-0" type="submit">
+        <a href="{% url 'logout'%}" class="btn btn-danger my-2 my-sm-0 my-3 my-lg-0" type="submit">
           Logout
-        </button>
-      </form>
+        </a>
     </div>
   </div>
 </nav>
 
 <div class="container">
-  <div class="jumbotron shadow-lg text-center p-3">
+  <div class="jumbotron shadow-lg text-center p-3" style="background-image: linear-gradient(to right bottom, red, yellow);">
     <div class="row">
-      <div class="col-4"></div>
-      <div class="col-4">
-        <h2>User Profile</h2>
-        <h3>Username : {{user.username}}</h3>
-        <p>Email: {{user.email}}</p>
+      <div class="col-3">
+      </div>
+      <div class="col-6 m-1">
+        <div class="card" style="width: 36rem;background-image: linear-gradient(to right bottom, rgb(77, 228, 177), rgb(197, 241, 223)); ">
+          <div class="card-body">
+            <h2 style="color:rgba(90, 4, 4, 0.637);">User Profile</h2>
+            <div class="row">
+              <div class="col-6">
+                <img src="{% static 'images/profile.png' %}" class="card-img-top" alt="profile picture">
+              </div>
+              <div class="col-6">
+                <h3 style="color:rgb(2, 80, 76);">Username : {{user.username}}</h3>
+                <p style="color:rgba(2, 80, 76);">Email: {{user.email}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6 m-1">
+        <div class="card" style="width: 36rem;background-color: rgb(178, 223, 208);">
+          <div class="card-body">
+            <form action="" method="POST">
+              {% csrf_token %}
+              <label>Input Values:</label><br /><input
+                type="text"
+                name="value_input"
+              /><br />
+              <label>Search Value:</label><br /><input
+                type="text"
+                name="search_input"
+              /><br />
+              <input
+                type="submit"
+                class="btn btn-info p-2 mt-2"
+                name="submit"
+                value="khoj"
+              /><br />
+            </form>
+            {% if state %} {% if result %}
+            <p><b>Result: True</b></p>
+            {% else %}
+            <p><b>Result: False</b></p>
+            {% endif %} {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-3"></div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6 m-1">
+            <div class="card" style="width: 36rem; background-color: rgb(178, 223, 208)">
+              <div class="card-body">
+                <form action="" method="POST">
+                  {% csrf_token %}
+                  <label>Start Timestamp:</label
+                  ><input
+                    type="datetime-local"
+                    id="start_point"
+                    name="start_timestamp"
+                  /><br /><br><br>
+                  <label>End Timestamp:</label
+                  ><input
+                    type="datetime-local"
+                    id="end_point"
+                    name="end_timestamp"
+                  /><br />
+                  <input
+                    type="submit"
+                    class="btn btn-primary mt-3"
+                    value="find data"
+                    name="data_find"
+                  />
+                </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-3"></div>
       </div>
       <div class="col-4"></div>
     </div>
-    <div class="row">
-      <div class="col-4"></div>
-      <div class="col-4">
-        <form action="" method="POST">
-          {% csrf_token %}
-          <label>Input Values:</label><br /><input
-            type="text"
-            name="value_input"
-          /><br />
-          <label>Search Value:</label><br /><input
-            type="text"
-            name="search_input"
-          /><br />
-          <input
-            type="submit"
-            class="btn btn-info p-2"
-            name="submit"
-            value="khoj"
-          /><br />
-        </form>
-        {% if state %} {% if result %}
-        <p>Result: True</p>
-        {% else %}
-        <p>Result: False</p>
-        {% endif %} {% endif %}
-
-        <hr />
-        <form action="" method="POST">
-          {% csrf_token %}
-          <label>Start Timestamp:</label
-          ><input
-            type="datetime-local"
-            id="start_point"
-            name="start_timestamp"
-          /><br /><br><br>
-          <label>End Timestamp:</label
-          ><input
-            type="datetime-local"
-            id="end_point"
-            name="end_timestamp"
-          /><br />
-          <input
-            type="submit"
-            class="btn btn-primary mt-3"
-            value="find data"
-            name="data_find"
-          />
-        </form>
-      </div>
-      <div class="col-4"></div>
-    </div>
-    <div class="row">{{data}}</div>
   </div>
 </div>
-
-<!-- <form action="{% url 'logout'%}" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="Logout" class="btn btn-info">
-
-    </form> -->
 {%endblock%}
